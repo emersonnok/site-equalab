@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eQualab — Cortex: o segundo cérebro do criador de conteúdo</title>
+<meta name="description" content="Transformamos seu acervo de podcast, YouTube e lives num banco de conhecimento com memória: perguntas respondidas com episódio e minuto, e roteiros criados com a sua cara. eQualab Cortex.">
+<meta property="og:title" content="eQualab Cortex — Tudo que você já criou, trabalhando por você">
+<meta property="og:description" content="Seu acervo inteiro, com memória e resposta. Diarização como ninguém faz, banco de conhecimento privado e criação com a sua cara.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://equalab.com.br">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="%2317181C"/><g fill="none"><circle cx="235" cy="330" r="140" stroke="%23F4F5F7" stroke-width="32"/></g><g><rect x="121" y="295" width="24" height="70" rx="12" fill="%2329A8E0"/><rect x="155" y="270" width="24" height="120" rx="12" fill="%234A6FD0"/><rect x="189" y="245" width="24" height="170" rx="12" fill="%235B4FC0"/><rect x="223" y="225" width="24" height="210" rx="12" fill="%23833BAB"/><rect x="257" y="245" width="24" height="170" rx="12" fill="%23A52C96"/><rect x="291" y="270" width="24" height="120" rx="12" fill="%23C81E82"/><rect x="325" y="295" width="24" height="70" rx="12" fill="%23C81E82"/></g></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fundo:#2B2F38; --branco:#343945; --borda:#434959;
+  --grafite:#F1F3F7; --texto:#D6DAE3; --fraco:#A6ACBB;
+  --azul:#4FC0F0; --violeta:#5B4FC0; --magenta:#C81E82;
+  --escuro:#1C1F26;
+  --grad:linear-gradient(90deg,#29A8E0,#5B4FC0,#C81E82);
+  --sombra:0 12px 32px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--fundo);color:var(--texto);font-family:Inter,system-ui,sans-serif;line-height:1.65}
+h1,h2,h3{font-family:Poppins,Inter,sans-serif;line-height:1.22;color:var(--grafite)}
+a{color:var(--azul);text-decoration:none}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+.grad-txt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(43,47,56,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--borda)}
+.nav{display:flex;align-items:center;gap:26px;height:66px}
+.marca{display:flex;align-items:center;gap:10px;font-family:Poppins;font-weight:600;font-size:23px;color:var(--grafite);letter-spacing:-0.5px}
+.marca svg{width:36px;height:36px}
+.marca b{color:var(--azul);font-weight:600}
+.nav nav{display:flex;gap:22px;margin-left:auto}
+.nav nav a{color:var(--fraco);font-size:14.5px;font-weight:500}
+.nav nav a:hover{color:var(--grafite)}
+.btn{display:inline-block;padding:12px 22px;border-radius:10px;font-weight:600;font-size:15px;transition:.18s}
+.btn-cta{background:var(--grad);color:#fff;box-shadow:0 6px 18px rgba(91,79,192,.28)}
+.btn-cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-ghost{border:1.5px solid var(--borda);color:var(--grafite);background:var(--branco)}
+.btn-ghost:hover{border-color:var(--azul);color:var(--azul)}
+@media(max-width:820px){.nav nav{display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:76px 0 64px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(30px,4.4vw,46px);font-weight:700}
+.hero p.sub{margin:18px 0 28px;font-size:17.5px;color:var(--fraco);max-width:50ch}
+.hero .acoes{display:flex;gap:14px;flex-wrap:wrap}
+.selo-mini{display:inline-block;font-size:13px;color:#B7AEF0;border:1px solid #5b4fc066;background:#5b4fc026;border-radius:30px;padding:5px 14px;margin-bottom:16px;font-weight:600}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:44px}}
+
+/* chat demo */
+.chat{background:var(--branco);border:1px solid var(--borda);border-radius:16px;padding:18px;box-shadow:var(--sombra)}
+.chat .topo{display:flex;gap:7px;margin-bottom:14px}
+.chat .topo i{width:10px;height:10px;border-radius:50%;background:var(--borda);display:block}
+.msg{max-width:88%;padding:12px 15px;border-radius:14px;font-size:14.3px;margin-bottom:12px;line-height:1.55}
+.msg.eu{background:var(--violeta);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.msg.ia{background:var(--fundo);border:1px solid var(--borda);border-bottom-left-radius:4px;color:var(--texto)}
+.msg.ia b{color:var(--grafite)}
+.fonte{display:inline-block;margin-top:8px;font-size:12px;color:#8FD4F5;background:#29a8e01f;border:1px solid #29a8e030;padding:3px 10px;border-radius:20px;font-weight:600}
+.digitando{color:var(--fraco);font-size:12.5px;margin-left:4px}
+
+/* ---------- seções ---------- */
+section{padding:70px 0}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--magenta);margin-bottom:10px}
+h2.titulo{font-size:clamp(24px,3.2vw,34px);margin-bottom:14px}
+p.desc{color:var(--fraco);max-width:64ch;font-size:16.5px}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.card{background:var(--branco);border:1px solid var(--borda);border-radius:16px;padding:26px;transition:.2s;box-shadow:var(--sombra)}
+.card:hover{transform:translateY(-4px)}
+.card .num{font-family:Poppins;font-weight:700;font-size:15px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card h3{font-size:19px;margin:10px 0 8px}
+.card p{color:var(--fraco);font-size:14.8px}
+@media(max-width:820px){.cards{grid-template-columns:1fr}}
+
+/* passos */
+.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:36px}
+.passo{background:var(--branco);border:1px solid var(--borda);border-radius:14px;padding:20px;box-shadow:var(--sombra)}
+.passo .pnum{width:30px;height:30px;border-radius:9px;background:var(--grad);color:#fff;font-family:Poppins;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.passo b{color:var(--grafite);font-family:Poppins;font-size:15.5px;display:block;margin-bottom:6px}
+.passo span{color:var(--fraco);font-size:14px}
+@media(max-width:820px){.passos{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.passos{grid-template-columns:1fr}}
+
+/* faixa demo (escura, para contraste) */
+.cta-final{background:var(--escuro);border-radius:22px;padding:54px 40px;text-align:center;position:relative;overflow:hidden}
+.cta-final::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--grad)}
+.cta-final h2{font-size:clamp(23px,3.2vw,32px);color:#fff;margin-bottom:12px}
+.cta-final p{color:#B9BCC6;margin-bottom:28px}
+
+/* edição (discreta) */
+.edicao{background:var(--branco);border:1px solid var(--borda);border-radius:16px;padding:26px 30px;display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap;box-shadow:var(--sombra)}
+.edicao p{color:var(--fraco);font-size:15px;max-width:62ch}
+.edicao b{color:var(--grafite)}
+
+/* faq */
+details{background:var(--branco);border:1px solid var(--borda);border-radius:12px;padding:18px 22px;margin-bottom:12px;box-shadow:var(--sombra)}
+summary{cursor:pointer;font-weight:600;color:var(--grafite);font-family:Poppins;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"+";color:var(--azul);font-size:22px;font-weight:400}
+details[open] summary::after{content:"–"}
+details p{color:var(--fraco);margin-top:10px;font-size:15px}
+
+footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;margin-top:70px}
+.foot{display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.foot a{color:#8FD4F5}
+.foot .redes a{margin-left:14px}
+
+.reveal{opacity:0;transform:translateY(16px);transition:.6s ease}
+.reveal.on{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="marca" href="#">
+      <svg viewBox="0 0 512 512" aria-hidden="true">
+        <circle cx="235" cy="330" r="140" fill="none" stroke="#F1F3F7" stroke-width="32"/>
+        <g transform="rotate(40 235 330)">
+          <rect x="187" y="168" width="96" height="70" fill="#2B2F38"/>
+          <line x1="173" y1="205" x2="173" y2="105" stroke="#F1F3F7" stroke-width="32" stroke-linecap="round"/>
+          <line x1="297" y1="205" x2="297" y2="105" stroke="#F1F3F7" stroke-width="32" stroke-linecap="round"/>
+          <line x1="150" y1="88" x2="320" y2="88" stroke="#F1F3F7" stroke-width="34" stroke-linecap="round"/>
+        </g>
+        <g>
+          <rect x="121" y="295" width="24" height="70"  rx="12" fill="#29A8E0"/>
+          <rect x="155" y="270" width="24" height="120" rx="12" fill="#4A6FD0"/>
+          <rect x="189" y="245" width="24" height="170" rx="12" fill="#5B4FC0"/>
+          <rect x="223" y="225" width="24" height="210" rx="12" fill="#833BAB"/>
+          <rect x="257" y="245" width="24" height="170" rx="12" fill="#A52C96"/>
+          <rect x="291" y="270" width="24" height="120" rx="12" fill="#C81E82"/>
+          <rect x="325" y="295" width="24" height="70"  rx="12" fill="#C81E82"/>
+        </g>
+        <circle cx="398" cy="112" r="14" fill="#5B4FC0"/>
+        <circle cx="452" cy="72"  r="27" fill="#C81E82"/>
+      </svg>
+      <span>eQua<b>lab</b></span>
+    </a>
+    <nav>
+      <a href="#cortex">Cortex</a>
+      <a href="#como">Como funciona</a>
+      <a href="#faq">Dúvidas</a>
+      <a href="https://app.equalab.com.br/app">Entrar</a>
+    </nav>
+    <a class="btn btn-cta" href="#" data-zap>Quero a demonstração</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <span class="selo-mini">eQualab Cortex — para podcasts, YouTube e lives</span>
+      <h1>Tudo que você <span class="grad-txt">já criou</span>, trabalhando por você.</h1>
+      <p class="sub">Transformamos seu acervo inteiro num banco de conhecimento com memória: você pergunta, ele responde citando episódio e minuto — e escreve roteiros novos com a sua cara.</p>
+      <div class="acoes">
+        <a class="btn btn-cta" href="#" data-zap>Quero ver meu acervo respondendo</a>
+        <a class="btn btn-ghost" href="#como">Como funciona</a>
+      </div>
+    </div>
+    <div class="chat reveal">
+      <div class="topo"><i></i><i></i><i></i></div>
+      <div class="msg eu">O que eu já falei sobre síndrome do impostor?</div>
+      <div class="msg ia">Você tocou no assunto 3 vezes. A mais completa foi no <b>episódio 143</b>, quando disse que "o impostor só visita quem está fazendo algo que importa" e contou o caso do seu primeiro palco.<br><span class="fonte">📍 Ep. 143 · 32:10</span> <span class="fonte">📍 Ep. 87 · 12:44</span></div>
+      <div class="msg eu">Monta uma pauta nova sobre isso no meu estilo?</div>
+      <div class="msg ia">Pauta pronta: <b>"Impostor, meu velho conhecido"</b> — abertura com o caso do palco, 3 blocos no seu formato de conversa, gancho de encerramento com pergunta pra audiência…</div>
+      <div class="digitando">Cortex escrevendo com a sua cara…</div>
+    </div>
+  </div>
+
+  <!-- CORTEX / PILARES -->
+  <section id="cortex">
+    <p class="kicker">O produto</p>
+    <h2 class="titulo">Seu conteúdo tem memória. Agora ela tem nome: <span class="grad-txt">Cortex</span>.</h2>
+    <p class="desc">Você já publicou centenas de horas — e quase tudo está parado, impossível de buscar ou reaproveitar. O Cortex devolve esse patrimônio para você, em três camadas:</p>
+    <div class="cards">
+      <div class="card reveal">
+        <span class="num">01</span>
+        <h3>Diarização como ninguém faz</h3>
+        <p>Não é transcrição jogada: cada fala tem dono — você, coapresentadores e convidados — com revisão humana + IA. É esse cuidado que torna seu acervo confiável.</p>
+      </div>
+      <div class="card reveal">
+        <span class="num">02</span>
+        <h3>Banco de conhecimento privado</h3>
+        <p>Busca por significado em todo o seu histórico, com citação de episódio e minuto em cada resposta. Regra de ouro: ele nunca inventa — quando não sabe, diz que não sabe.</p>
+      </div>
+      <div class="card reveal">
+        <span class="num">03</span>
+        <h3>Criação com a sua cara</h3>
+        <p>Roteiros, pautas e perguntas de entrevista no SEU estilo — porque a IA aprendeu com o que você já disse, do seu jeito. Horas de pesquisa viram minutos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como">
+    <p class="kicker">Sem parte técnica para você</p>
+    <h2 class="titulo">Como funciona</h2>
+    <div class="passos">
+      <div class="passo reveal"><span class="pnum">1</span><b>Você aponta a fonte</b><span>Feed do podcast, canal ou playlist do YouTube — uma mensagem resolve.</span></div>
+      <div class="passo reveal"><span class="pnum">2</span><b>A gente prepara tudo</b><span>Transcrição, identificação de vozes, revisão e organização. Feito por nós, para você.</span></div>
+      <div class="passo reveal"><span class="pnum">3</span><b>Seu Cortex no ar</b><span>Login e uma tela de conversa, de qualquer dispositivo.</span></div>
+      <div class="passo reveal"><span class="pnum">4</span><b>Você usa todo dia</b><span>Respostas com fonte, roteiros e pautas — e episódios novos entram com o mesmo cuidado de revisão.</span></div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section>
+    <div class="cta-final reveal">
+      <p class="kicker" style="color:#e879c1">Sem risco, sem cartão</p>
+      <h2>Veja o SEU acervo respondendo antes de pagar qualquer coisa</h2>
+      <p>Preparamos alguns episódios seus gratuitamente e liberamos o acesso por tempo limitado.<br>Você testa com as suas perguntas, no seu ritmo — e só então conversamos sobre planos.</p>
+      <a class="btn btn-cta" href="#" data-zap>Quero a demonstração gratuita</a>
+    </div>
+  </section>
+
+  <!-- EDIÇÃO (discreta, sob encomenda) -->
+  <section id="edicao" style="padding-top:0">
+    <div class="edicao reveal">
+      <p><b>Também editamos podcast — sob encomenda.</b> Cortes, tratamento de áudio e finalização, avaliados caso a caso e com agenda limitada. Quem edita com a gente já tem o acervo pronto para virar Cortex.</p>
+      <a class="btn btn-ghost" href="#" data-zap>Consultar disponibilidade</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding-top:20px">
+    <p class="kicker">Dúvidas frequentes</p>
+    <h2 class="titulo">Perguntas que sempre fazem</h2>
+    <div style="margin-top:26px">
+      <details class="reveal"><summary>A IA vai inventar coisas sobre mim?</summary><p>Não. O Cortex só responde com o que está no seu acervo, citando episódio e minuto. Quando a resposta não existe no seu conteúdo, ele admite que não sabe — essa é a regra de ouro do produto.</p></details>
+      <details class="reveal"><summary>Serve para canal do YouTube ou só podcast?</summary><p>Serve para os dois — e para lives e cursos gravados. Podcast, YouTube e gravações entram no mesmo cérebro, com a origem identificada.</p></details>
+      <details class="reveal"><summary>Meu conteúdo fica seguro?</summary><p>Seu banco é isolado e privado, o acesso é por login, e seus dados não são usados para treinar IA de terceiros. Tratamento conforme a LGPD.</p></details>
+      <details class="reveal"><summary>E os episódios que eu publicar daqui pra frente?</summary><p>Entram no seu Cortex com o mesmo tratamento do acervo — transcrição, identificação de vozes e revisão humana — conforme o seu plano ou sob demanda. Nada entra sem passar pela nossa revisão.</p></details>
+      <details class="reveal"><summary>Quanto custa?</summary><p>Depende do tamanho do seu acervo e do seu ritmo de uso — por isso a proposta é personalizada. O caminho é sempre o mesmo: demonstração gratuita primeiro, números depois. <a href="#" data-zap>Chama no WhatsApp</a> que a gente conversa.</p></details>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="ano"></span> eQualab · Palhoça/SC · <a href="mailto:contato@equalab.com.br">contato@equalab.com.br</a></span>
+    <span class="redes">
+      <a href="https://app.equalab.com.br/app">Entrar no Cortex</a>
+      <a href="https://www.instagram.com/agenciaequalab/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://x.com/agenciaequalab" target="_blank" rel="noopener">X</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+/* ==== CONFIGURAÇÃO ==== */
+const WHATSAPP = "5548998213289";
+const MENSAGEM = "Olá! Quero a demonstração gratuita do Cortex.";
+/* ====================== */
+document.querySelectorAll("[data-zap]").forEach(a=>{
+  a.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(MENSAGEM);
+  a.target = "_blank"; a.rel = "noopener";
+});
+document.getElementById("ano").textContent = new Date().getFullYear();
+const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
+                                                                                                                                   
