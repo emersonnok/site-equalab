@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://equalab.com.br/sitemap.xml

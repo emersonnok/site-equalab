@@ -3,12 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>eQualab — Cortex: o segundo cérebro do criador de conteúdo</title>
-<meta name="description" content="Transformamos seu acervo de podcast, YouTube e lives num banco de conhecimento com memória: perguntas respondidas com episódio e minuto — e você clica e ouve o momento exato. Roteiros com a sua cara. eQualab Cortex.">
-<meta property="og:title" content="eQualab Cortex — Tudo que você já criou, trabalhando por você">
-<meta property="og:description" content="Seu acervo inteiro, com memória e resposta. Clique na citação e ouça o momento exato. Diarização como ninguém faz, banco de conhecimento privado e criação com a sua cara.">
+<title>Cortex — assistente de IA que responde com base no seu podcast | eQualab</title>
+<meta name="description" content="Cortex transforma seu acervo de podcast, YouTube e lives num assistente de IA: você pergunta e ele responde citando o episódio e o minuto exato — clique e ouça a prova. Também escreve roteiros no seu estilo. Feito pela eQualab.">
+<meta name="keywords" content="assistente de IA para podcast, buscar dentro de episódios de podcast, transcrição de podcast com identificação de quem fala, diarização, banco de conhecimento para podcasters, roteiro de podcast com IA, IA para criadores de conteúdo, YouTube, eQualab, Cortex">
+<meta name="author" content="eQualab">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://equalab.com.br/">
+<meta property="og:title" content="Cortex — seu podcast respondendo por você | eQualab">
+<meta property="og:description" content="Pergunte sobre o seu próprio conteúdo e receba a resposta com episódio e minuto exato — clique e ouça a prova na sua voz. E ainda escreve roteiros no seu estilo.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://equalab.com.br">
+<meta property="og:url" content="https://equalab.com.br/">
+<meta property="og:site_name" content="eQualab Cortex">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://equalab.com.br/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cortex — seu podcast respondendo por você | eQualab">
+<meta name="twitter:description" content="Assistente de IA que responde com base no seu acervo, citando episódio e minuto. Clique e ouça a prova.">
+<meta name="twitter:image" content="https://equalab.com.br/og-cover.png">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="%2317181C"/><g fill="none"><circle cx="235" cy="330" r="140" stroke="%23F4F5F7" stroke-width="32"/></g><g><rect x="121" y="295" width="24" height="70" rx="12" fill="%2329A8E0"/><rect x="155" y="270" width="24" height="120" rx="12" fill="%234A6FD0"/><rect x="189" y="245" width="24" height="170" rx="12" fill="%235B4FC0"/><rect x="223" y="225" width="24" height="210" rx="12" fill="%23833BAB"/><rect x="257" y="245" width="24" height="170" rx="12" fill="%23A52C96"/><rect x="291" y="270" width="24" height="120" rx="12" fill="%23C81E82"/><rect x="325" y="295" width="24" height="70" rx="12" fill="%23C81E82"/></g></svg>'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,7 +128,53 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
 
 .reveal{opacity:0;transform:translateY(16px);transition:.6s ease}
 .reveal.on{opacity:1;transform:none}
+
+/* vídeo */
+.video-sec{padding-top:34px}
+.video-wrap{max-width:900px;margin:26px auto 0;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--borda);background:#000;box-shadow:var(--sombra)}
+.video-wrap::before{content:"";display:block;padding-top:56.25%}
+.video-wrap.vertical{max-width:400px}
+.video-wrap.vertical::before{padding-top:177.78%}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-cta{text-align:center;margin-top:18px}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://equalab.com.br/#org",
+      "name": "eQualab",
+      "url": "https://equalab.com.br/",
+      "logo": "https://equalab.com.br/og-cover.png",
+      "email": "contato@equalab.com.br",
+      "address": {"@type": "PostalAddress", "addressLocality": "Palhoça", "addressRegion": "SC", "addressCountry": "BR"},
+      "sameAs": ["https://www.instagram.com/agenciaequalab/", "https://x.com/agenciaequalab"]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Cortex",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "https://equalab.com.br/",
+      "image": "https://equalab.com.br/og-cover.png",
+      "publisher": {"@id": "https://equalab.com.br/#org"},
+      "description": "Assistente de IA que transforma o acervo de podcast, YouTube e lives de um criador em um banco de conhecimento: responde às perguntas citando o episódio e o minuto exato, com áudio ou vídeo clicável, e escreve roteiros no estilo do criador.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "BRL", "description": "Demonstração gratuita com parte do acervo, por tempo limitado."}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "A IA vai inventar coisas sobre mim?", "acceptedAnswer": {"@type": "Answer", "text": "Não. O Cortex só responde com o que está no seu acervo, citando episódio e minuto, e você confere clicando na citação para ouvir o próprio trecho. Quando a resposta não existe no seu conteúdo, ele diz que não sabe."}},
+        {"@type": "Question", "name": "Serve para canal do YouTube ou só podcast?", "acceptedAnswer": {"@type": "Answer", "text": "Serve para os dois, e também para lives e cursos gravados. Podcast, YouTube e gravações entram no mesmo cérebro, com a origem identificada."}},
+        {"@type": "Question", "name": "Meu conteúdo fica seguro?", "acceptedAnswer": {"@type": "Answer", "text": "Seu banco é isolado e privado, o acesso é por login e seus dados não são usados para treinar IA de terceiros. Tratamento conforme a LGPD."}},
+        {"@type": "Question", "name": "Quanto custa?", "acceptedAnswer": {"@type": "Answer", "text": "Depende do tamanho do acervo e do ritmo de uso, por isso a proposta é personalizada. O caminho é sempre demonstração gratuita primeiro, números depois."}}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -177,6 +236,16 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
     </div>
   </div>
 
+  <!-- VÍDEO -->
+  <section class="video-sec" id="video">
+    <p class="kicker">Veja em 2 minutos</p>
+    <h2 class="titulo">O Cortex em ação</h2>
+    <p class="desc">Uma pergunta, a resposta citando episódio e minuto, e o clique que toca o trecho na sua própria voz. É isso — sem parte técnica para você.</p>
+    <div class="video-wrap" id="videoWrap">
+      <iframe id="videoFrame" title="Demonstração do Cortex" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+  </section>
+
   <!-- CORTEX / PILARES -->
   <section id="cortex">
     <p class="kicker">O produto</p>
@@ -205,11 +274,12 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
   <section id="como">
     <p class="kicker">Sem parte técnica para você</p>
     <h2 class="titulo">Como funciona</h2>
+    <p class="desc"><b style="color:var(--grafite)">Em uma frase:</b> você faz uma pergunta sobre o seu próprio conteúdo e recebe a resposta com o episódio e o minuto exato — do preparo nós cuidamos, você só usa.</p>
     <div class="passos">
-      <div class="passo reveal"><span class="pnum">1</span><b>Você aponta a fonte</b><span>Feed do podcast, canal ou playlist do YouTube — uma mensagem resolve.</span></div>
-      <div class="passo reveal"><span class="pnum">2</span><b>A gente prepara tudo</b><span>Transcrição, identificação de vozes, revisão e organização. Feito por nós, para você.</span></div>
-      <div class="passo reveal"><span class="pnum">3</span><b>Seu Cortex no ar</b><span>Login e uma tela de conversa, de qualquer dispositivo.</span></div>
-      <div class="passo reveal"><span class="pnum">4</span><b>Você usa todo dia</b><span>Respostas com fonte, roteiros e pautas — e episódios novos entram com o mesmo cuidado de revisão.</span></div>
+      <div class="passo reveal"><span class="pnum">1</span><b>Você aponta a fonte (uma vez)</b><span>Manda o link do seu podcast, canal ou playlist do YouTube. Só isso da sua parte para começar.</span></div>
+      <div class="passo reveal"><span class="pnum">2</span><b>A gente monta o seu Cortex</b><span>Transcrevemos, identificamos quem fala e revisamos tudo. Trabalho nosso — você não instala nem configura nada.</span></div>
+      <div class="passo reveal"><span class="pnum">3</span><b>Você entra e pergunta</b><span>Recebe login e uma tela de conversa. Pergunta no computador ou no celular e a resposta vem com a fonte.</span></div>
+      <div class="passo reveal"><span class="pnum">4</span><b>Clica e ouve a prova</b><span>Toda citação é clicável: toca o áudio no minuto certo ou abre o vídeo no segundo exato. Episódios novos entram com o mesmo cuidado.</span></div>
     </div>
   </section>
 
@@ -268,9 +338,31 @@ document.querySelectorAll("[data-zap]").forEach(a=>{
   a.target = "_blank"; a.rel = "noopener";
 });
 document.getElementById("ano").textContent = new Date().getFullYear();
+
+/* vídeo responsivo: celular = short vertical, desktop = vídeo horizontal */
+(function(){
+  const ID_DESKTOP = "QR33zueTh4k";
+  const ID_CELULAR = "lk3-yXFfY1U";
+  const wrap = document.getElementById("videoWrap");
+  const frame = document.getElementById("videoFrame");
+  if(!wrap || !frame) return;
+  const ehCelular = () => window.matchMedia("(max-width:820px)").matches;
+  let atual = null;
+  function aplicar(){
+    const celular = ehCelular();
+    const id = celular ? ID_CELULAR : ID_DESKTOP;
+    if(id === atual) return;
+    atual = id;
+    wrap.classList.toggle("vertical", celular);
+    frame.src = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&modestbranding=1";
+  }
+  aplicar();
+  let t;
+  window.addEventListener("resize", ()=>{clearTimeout(t);t=setTimeout(aplicar,250);});
+})();
 const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
-                                                                                                                                   
+                                                                                                                                   
