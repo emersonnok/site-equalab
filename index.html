@@ -154,6 +154,15 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
       "url": "https://equalab.com.br/",
       "logo": "https://equalab.com.br/og-cover.png",
       "email": "contato@equalab.com.br",
+      "telephone": "+5548984336891",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+5548984336891",
+        "email": "contato@equalab.com.br",
+        "contactType": "sales",
+        "areaServed": "BR",
+        "availableLanguage": "Portuguese"
+      },
       "address": {"@type": "PostalAddress", "addressLocality": "Palhoça", "addressRegion": "SC", "addressCountry": "BR"},
       "sameAs": ["https://www.instagram.com/agenciaequalab/", "https://x.com/agenciaequalab"]
     },
@@ -324,7 +333,7 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
 
 <footer>
   <div class="wrap foot">
-    <span>© <span id="ano"></span> eQualab · Palhoça/SC · <a href="mailto:contato@equalab.com.br">contato@equalab.com.br</a></span>
+    <span>© <span id="ano"></span> eQualab · Palhoça/SC · <a href="mailto:contato@equalab.com.br">contato@equalab.com.br</a> · <a href="#" data-zap>WhatsApp (48) 98433-6891</a></span>
     <span class="redes">
       <a href="https://app.equalab.com.br/">Entrar no Cortex</a>
       <a href="https://www.instagram.com/agenciaequalab/" target="_blank" rel="noopener">Instagram</a>
@@ -335,7 +344,7 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
 
 <script>
 /* ==== CONFIGURAÇÃO ==== */
-const WHATSAPP = "5548998213289";
+const WHATSAPP = "5548984336891";
 const MENSAGEM = "Olá! Quero a demonstração gratuita do Cortex.";
 /* ====================== */
 document.querySelectorAll("[data-zap]").forEach(a=>{
@@ -346,8 +355,8 @@ document.getElementById("ano").textContent = new Date().getFullYear();
 
 /* vídeo responsivo: celular = short vertical, desktop = vídeo horizontal */
 (function(){
-  const ID_DESKTOP = "p1vT1eufP0Q";   // youtu.be/p1vT1eufP0Q
-  const ID_CELULAR = "PvLRfuRt6E0";   // youtube.com/shorts/PvLRfuRt6E0
+  const ID_DESKTOP = "uvfUUsZ5K78";   // youtu.be/uvfUUsZ5K78
+  const ID_CELULAR = "t0AW251CofM";   // youtube.com/shorts/t0AW251CofM
   const wrap = document.getElementById("videoWrap");
   const frame = document.getElementById("videoFrame");
   if(!wrap || !frame) return;
