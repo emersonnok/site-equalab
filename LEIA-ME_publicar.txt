@@ -1,0 +1,66 @@
+PUBLICAR O SITE — como é hoje (desde 12/08/2026)
+================================================
+
+ESTA PASTA É UM REPOSITÓRIO GIT.
+Ela está ligada a  github.com/emersonnok/site-equalab , que é de onde o
+GitHub Pages serve o  equalab.com.br .
+
+NÃO SUBA MAIS ARQUIVO PELO NAVEGADOR ("Add file → Upload").
+Com cinco páginas em três pastas, subir na mão é esquecer uma.
+
+
+COMO PUBLICAR UMA MUDANÇA (3 passos, no GitHub Desktop)
+-------------------------------------------------------
+1) Abra o GitHub Desktop e, no canto superior esquerdo, em
+   "Current repository", escolha  site-equalab .
+   (O outro da lista, cortex-app, é o app — não confunda.)
+
+2) Confira a lista "Changes" à esquerda: tem que ter só o que você
+   espera. Escreva o Summary e clique em "Commit to main".
+
+3) Clique em "Push origin". Em 1–2 minutos o site já mudou.
+
+
+ANTES DE PUBLICAR
+-----------------
+- Abra os arquivos com dois cliques e confira no navegador.
+- Se mexeu no Termos_de_Uso.md ou na Politica_de_Privacidade.md
+  (que ficam em  C:\Emerson\Programas\Subir no projeto ), rode antes:
+
+     python "C:\Emerson\Programas\Produto para podcasts\Site\gerar_paginas_juridicas.py"
+
+  Ele regrava  termos\index.html  e  privacidade\index.html .
+  NÃO edite esses dois arquivos à mão — a edição some na próxima vez
+  que o script rodar.
+
+
+O QUE TEM NESTA PASTA
+---------------------
+  index.html ................. o site (para criadores)
+  ouvir\index.html ........... a vitrine de podcasts (para ouvintes)
+  ouvir\poroutrolado\ ........ página do Por Outro Lado
+  ouvir\dqc\ ................. página do DQC
+  termos\ e privacidade\ ..... GERADOS pelo script, não edite à mão
+  sitemap.xml ................ acrescente aqui toda página nova
+  CNAME ...................... diz ao GitHub que o domínio é equalab.com.br
+                               (NUNCA apague este arquivo)
+  .gitignore ................. impede que os backups locais virem página
+                               pública (equalab.com.br/index_original.html)
+
+
+O DOMÍNIO E O HTTPS (já estão prontos — só para registro)
+----------------------------------------------------------
+No registro.br, a zona DNS aponta a raiz para os IPs do GitHub Pages:
+   TIPO A     NOME: (vazio/raiz)   185.199.108.153
+   TIPO A     NOME: (vazio/raiz)   185.199.109.153
+   TIPO A     NOME: (vazio/raiz)   185.199.110.153
+   TIPO A     NOME: (vazio/raiz)   185.199.111.153
+   TIPO CNAME NOME: www            emersonnok.github.io
+
+No GitHub: Settings → Pages → Branch "main", pasta "/ (root)",
+Custom domain "equalab.com.br" e "Enforce HTTPS" marcado.
+
+TESTAR
+  https://equalab.com.br        → site
+  https://equalab.com.br/ouvir  → vitrine de ouvintes
+  https://app.equalab.com.br    → o sistema (Render, outro repositório)

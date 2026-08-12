@@ -1,0 +1,11 @@
+# Cópias de segurança locais — NÃO publicar.
+# Qualquer arquivo aqui dentro vira uma página pública em equalab.com.br/
+# (equalab.com.br/index_original.html, por exemplo). Backup é para a sua
+# máquina, não para a internet.
+index_backup_*.html
+index_original.html
+
+# Sistema operacional
+Thumbs.db
+desktop.ini
+.DS_Store
