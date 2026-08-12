@@ -69,7 +69,20 @@ def inline(txt: str) -> str:
 
 
 def markdown_para_html(md: str) -> str:
-    saida, lista = [], False
+    """Converte o markdown dos documentos jurídicos em HTML.
+
+    ⚠️ A regra que este conversor é obrigado a respeitar: no markdown, um
+    parágrafo continua enquanto não vier uma linha em branco. Os documentos são
+    escritos com quebra em ~78 colunas, então quase todo parágrafo ocupa 4 ou 5
+    linhas do arquivo — e cada uma delas NÃO é um parágrafo.
+
+    A primeira versão tratava linha por linha. O resultado: cada linha virava um
+    <p>, o texto saía com buraco entre todas as frases, e o negrito que
+    atravessava a quebra (`**cartão de\\ncrédito**`) nunca fechava — aparecia
+    `no** Pix**` na tela. Por isso as linhas são ACUMULADAS e só viram HTML
+    quando o bloco termina.
+    """
+    saida, lista, paragrafo, citacao = [], False, [], []
 
     def fechar_lista():
         nonlocal lista
@@ -77,36 +90,71 @@ def markdown_para_html(md: str) -> str:
             saida.append("</ul>")
             lista = False
 
+    def fechar_paragrafo():
+        if paragrafo:
+            saida.append(f"<p>{inline(' '.join(paragrafo))}</p>")
+            paragrafo.clear()
+
+    def fechar_citacao():
+        if citacao:
+            saida.append(f"<blockquote>{inline(' '.join(citacao))}</blockquote>")
+            citacao.clear()
+
+    def fechar_tudo():
+        fechar_paragrafo()
+        fechar_citacao()
+        fechar_lista()
+
     for linha in md.split("\n"):
         crua = linha.rstrip()
-        if not crua.strip():
-            fechar_lista()
+
+        if not crua.strip():          # linha em branco = fim do bloco
+            fechar_tudo()
             continue
+
         if crua.strip() == "---":
-            fechar_lista()
+            fechar_tudo()
             saida.append("<hr>")
             continue
+
         cab = re.match(r"^(#{1,4})\s+(.*)$", crua)
         if cab:
-            fechar_lista()
+            fechar_tudo()
             n = len(cab.group(1))
             saida.append(f"<h{n}>{inline(cab.group(2))}</h{n}>")
             continue
+
+        if crua.startswith(">"):
+            fechar_paragrafo()
+            fechar_lista()
+            texto = crua.lstrip(">").strip()
+            # dentro da citação, título vira negrito — <h3> num blockquote fica
+            # maior que o texto ao redor e rouba a hierarquia da página
+            texto = re.sub(r"^#{1,4}\s+(.*)$", r"**\1**", texto)
+            if texto:
+                citacao.append(texto)
+            continue
+        fechar_citacao()
+
         item = re.match(r"^\s*[-*]\s+(.*)$", crua)
         if item:
+            fechar_paragrafo()
             if not lista:
                 saida.append("<ul>")
                 lista = True
             saida.append(f"<li>{inline(item.group(1))}</li>")
             continue
-        if crua.startswith(">"):
-            fechar_lista()
-            saida.append(f"<blockquote>{inline(crua.lstrip('> '))}</blockquote>")
+
+        # continuação de um item de lista (linha indentada) entra no item
+        if lista and linha.startswith(("  ", "\t")):
+            if saida and saida[-1].endswith("</li>"):
+                saida[-1] = saida[-1][:-5] + " " + inline(crua.strip()) + "</li>"
             continue
         fechar_lista()
-        saida.append(f"<p>{inline(crua)}</p>")
 
-    fechar_lista()
+        paragrafo.append(crua.strip())
+
+    fechar_tudo()
     return "\n".join(saida)
 
 
