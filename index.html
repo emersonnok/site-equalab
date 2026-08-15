@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cortex — assistente de IA que responde com base no seu podcast | eQualab</title>
-<meta name="description" content="Cortex transforma seu acervo de podcast, YouTube e lives num assistente de IA: você pergunta e ele responde citando o episódio e o minuto exato — clique e ouça a prova. Também escreve roteiros no seu estilo. Feito pela eQualab.">
+<title>Cortex: assistente de IA que responde com base no seu podcast | eQualab</title>
+<meta name="description" content="Cortex transforma seu acervo de podcast, YouTube e lives num assistente de IA: você pergunta e ele responde citando o episódio e o minuto exato. Clique e ouça a prova. Também escreve roteiros no seu estilo. Feito pela eQualab.">
 <meta name="keywords" content="assistente de IA para podcast, buscar dentro de episódios de podcast, transcrição de podcast com identificação de quem fala, diarização, banco de conhecimento para podcasters, roteiro de podcast com IA, IA para criadores de conteúdo, YouTube, eQualab, Cortex">
 <meta name="author" content="eQualab">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://equalab.com.br/">
-<meta property="og:title" content="Cortex — seu podcast respondendo por você | eQualab">
-<meta property="og:description" content="Pergunte sobre o seu próprio conteúdo e receba a resposta com episódio e minuto exato — clique e ouça a prova na sua voz. E ainda escreve roteiros no seu estilo.">
+<meta property="og:title" content="Cortex: seu podcast respondendo por você | eQualab">
+<meta property="og:description" content="Pergunte sobre o seu próprio conteúdo e receba a resposta com episódio e minuto exato. Clique e ouça a prova na sua voz. E ainda escreve roteiros no seu estilo.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://equalab.com.br/">
 <meta property="og:site_name" content="eQualab Cortex">
@@ -19,7 +19,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cortex — seu podcast respondendo por você | eQualab">
+<meta name="twitter:title" content="Cortex: seu podcast respondendo por você | eQualab">
 <meta name="twitter:description" content="Assistente de IA que responde com base no seu acervo, citando episódio e minuto. Clique e ouça a prova.">
 <meta name="twitter:image" content="https://equalab.com.br/og-cover.png">
 <!-- Favicon em ARQUIVO (o Google não aceita favicon embutido/data URI e exige
@@ -142,6 +142,16 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
 .video-wrap.vertical::before{padding-top:177.78%}
 .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .video-cta{text-align:center;margin-top:18px}
+
+/* ---------- faixa do plano Fa (entrada de quem ouve) ---------- */
+.fa-faixa{background:linear-gradient(135deg,rgba(41,168,224,.10),rgba(200,30,130,.10));border:1px solid var(--borda);border-radius:22px;padding:34px 32px;display:grid;grid-template-columns:1.25fr .75fr;gap:30px;align-items:center;margin-top:10px}
+.fa-faixa h2{font-size:clamp(21px,2.6vw,27px);margin-bottom:10px}
+.fa-faixa p{color:var(--fraco);font-size:15.6px;max-width:56ch}
+.fa-faixa .lado{background:var(--branco);border:1px solid var(--borda);border-radius:16px;padding:22px;text-align:center}
+.fa-faixa .lado .big{font-family:Poppins,sans-serif;font-size:30px;font-weight:700;color:var(--grafite);line-height:1.1}
+.fa-faixa .lado .big small{display:block;font-size:13.5px;font-weight:500;color:var(--fraco);margin-top:6px}
+.fa-faixa .lado .btn{margin-top:16px;width:100%}
+@media(max-width:820px){ .fa-faixa{grid-template-columns:1fr;padding:26px 22px} }
 </style>
 <script type="application/ld+json">
 {
@@ -221,6 +231,7 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
       <a href="#cortex">Cortex</a>
       <a href="#como">Como funciona</a>
       <a href="#faq">Dúvidas</a>
+      <a href="/fa/">Sou fã de um podcast</a>
       <a href="https://app.equalab.com.br/">Entrar</a>
     </nav>
     <a class="btn btn-cta" href="#" data-zap>Quero a demonstração</a>
@@ -232,9 +243,9 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
   <!-- HERO -->
   <div class="hero">
     <div>
-      <span class="selo-mini">eQualab Cortex — para podcasts, YouTube e lives</span>
+      <span class="selo-mini">eQualab Cortex, para podcasts, YouTube e lives</span>
       <h1>Tudo que você <span class="grad-txt">já criou</span>, trabalhando por você.</h1>
-      <p class="sub">Transformamos seu acervo inteiro num banco de conhecimento com memória: você pergunta, ele responde citando episódio e minuto — e você clica e ouve o momento exato. Ainda escreve roteiros novos com a sua cara.</p>
+      <p class="sub">Transformamos seu acervo inteiro num banco de conhecimento com memória: você pergunta, ele responde citando episódio e minuto, e você clica para ouvir o momento exato. Ele ainda escreve roteiros novos com a sua cara.</p>
       <div class="acoes">
         <a class="btn btn-cta" href="#" data-zap>Quero ver meu acervo respondendo</a>
         <a class="btn btn-ghost" href="#como">Como funciona</a>
@@ -243,9 +254,9 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
     <div class="chat reveal">
       <div class="topo"><i></i><i></i><i></i></div>
       <div class="msg eu">O que eu já falei sobre síndrome do impostor?</div>
-      <div class="msg ia">Você tocou no assunto 3 vezes. A mais completa foi no <b>episódio 143</b>, quando disse que "o impostor só visita quem está fazendo algo que importa" e contou o caso do seu primeiro palco.<br><span class="fonte" title="Tocar este trecho">▶ Ep. 143 · 32:10</span> <span class="fonte" title="Tocar este trecho">▶ Ep. 87 · 12:44</span><span class="ouca">Clique na citação e ouça o momento exato — na sua própria voz.</span></div>
+      <div class="msg ia">Você tocou no assunto 3 vezes. A mais completa foi no <b>episódio 143</b>, quando disse que "o impostor só visita quem está fazendo algo que importa" e contou o caso do seu primeiro palco.<br><span class="fonte" title="Tocar este trecho">▶ Ep. 143 · 32:10</span> <span class="fonte" title="Tocar este trecho">▶ Ep. 87 · 12:44</span><span class="ouca">Clique na citação e ouça o momento exato, na sua própria voz.</span></div>
       <div class="msg eu">Monta uma pauta nova sobre isso no meu estilo?</div>
-      <div class="msg ia">Pauta pronta: <b>"Impostor, meu velho conhecido"</b> — abertura com o caso do palco, 3 blocos no seu formato de conversa, gancho de encerramento com pergunta pra audiência…</div>
+      <div class="msg ia">Pauta pronta: <b>"Impostor, meu velho conhecido"</b>, com abertura no caso do palco, 3 blocos no seu formato de conversa, gancho de encerramento com pergunta pra audiência…</div>
       <div class="digitando">Cortex escrevendo com a sua cara…</div>
     </div>
   </div>
@@ -254,7 +265,7 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
   <section class="video-sec" id="video">
     <p class="kicker">Veja em 1 minuto</p>
     <h2 class="titulo">O Cortex em ação</h2>
-    <p class="desc">Uma pergunta, a resposta citando episódio e minuto, e o clique que toca o trecho na sua própria voz. É isso — sem parte técnica para você.</p>
+    <p class="desc">Uma pergunta, a resposta citando episódio e minuto, e o clique que toca o trecho na sua própria voz. Nada de parte técnica para você.</p>
     <div class="video-wrap" id="videoWrap">
       <iframe id="videoFrame" title="Demonstração do Cortex" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
@@ -264,22 +275,22 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
   <section id="cortex">
     <p class="kicker">O produto</p>
     <h2 class="titulo">Seu conteúdo tem memória. Agora ela tem nome: <span class="grad-txt">Cortex</span>.</h2>
-    <p class="desc">Você já publicou centenas de horas — e quase tudo está parado, impossível de buscar ou reaproveitar. O Cortex devolve esse patrimônio para você, em três camadas:</p>
+    <p class="desc">Você já publicou centenas de horas, e quase tudo está parado, impossível de buscar ou reaproveitar. O Cortex devolve esse patrimônio para você, em três camadas:</p>
     <div class="cards">
       <div class="card reveal">
         <span class="num">01</span>
         <h3>Diarização como ninguém faz</h3>
-        <p>Não é transcrição jogada: cada fala tem dono — você, coapresentadores e convidados — com revisão humana + IA. É esse cuidado que torna seu acervo confiável.</p>
+        <p>Não é transcrição jogada. Cada fala tem dono, seja você, os coapresentadores ou os convidados, com revisão humana somada à IA. É esse cuidado que torna seu acervo confiável.</p>
       </div>
       <div class="card reveal">
         <span class="num">02</span>
         <h3>Banco de conhecimento privado</h3>
-        <p>Busca por significado em todo o seu histórico, com citação de episódio e minuto em cada resposta — e você clica e ouve o próprio trecho no áudio (ou abre o vídeo no segundo certo). A prova em um clique. Regra de ouro: ele nunca inventa — quando não sabe, diz que não sabe.</p>
+        <p>Busca por significado em todo o seu histórico, com citação de episódio e minuto em cada resposta, e você clica para ouvir o próprio trecho no áudio ou abrir o vídeo no segundo certo. A prova fica a um clique. Regra de ouro: ele nunca inventa, e quando não sabe, diz que não sabe.</p>
       </div>
       <div class="card reveal">
         <span class="num">03</span>
         <h3>Criação com a sua cara</h3>
-        <p>Roteiros, pautas e perguntas de entrevista no SEU estilo — porque a IA aprendeu com o que você já disse, do seu jeito. Horas de pesquisa viram minutos.</p>
+        <p>Roteiros, pautas e perguntas de entrevista no SEU estilo, porque a IA aprendeu com o que você já disse, do seu jeito. Horas de pesquisa viram minutos.</p>
       </div>
     </div>
   </section>
@@ -288,10 +299,10 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
   <section id="como">
     <p class="kicker">Sem parte técnica para você</p>
     <h2 class="titulo">Como funciona</h2>
-    <p class="desc"><b style="color:var(--grafite)">Em uma frase:</b> você faz uma pergunta sobre o seu próprio conteúdo e recebe a resposta com o episódio e o minuto exato — do preparo nós cuidamos, você só usa.</p>
+    <p class="desc"><b style="color:var(--grafite)">Em uma frase:</b> você faz uma pergunta sobre o seu próprio conteúdo e recebe a resposta com o episódio e o minuto exato. Do preparo nós cuidamos, você só usa.</p>
     <div class="passos">
       <div class="passo reveal"><span class="pnum">1</span><b>Você aponta a fonte (uma vez)</b><span>Manda o link do seu podcast, canal ou playlist do YouTube. Só isso da sua parte para começar.</span></div>
-      <div class="passo reveal"><span class="pnum">2</span><b>A gente monta o seu Cortex</b><span>Transcrevemos, identificamos quem fala e revisamos tudo. Trabalho nosso — você não instala nem configura nada.</span></div>
+      <div class="passo reveal"><span class="pnum">2</span><b>A gente monta o seu Cortex</b><span>Transcrevemos, identificamos quem fala e revisamos tudo. O trabalho é nosso, e você não instala nem configura nada.</span></div>
       <div class="passo reveal"><span class="pnum">3</span><b>Você entra e pergunta</b><span>Recebe login e uma tela de conversa. Pergunta no computador ou no celular e a resposta vem com a fonte.</span></div>
       <div class="passo reveal"><span class="pnum">4</span><b>Clica e ouve a prova</b><span>Toda citação é clicável: toca o áudio no minuto certo ou abre o vídeo no segundo exato. Episódios novos entram com o mesmo cuidado.</span></div>
     </div>
@@ -302,15 +313,32 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
     <div class="cta-final reveal">
       <p class="kicker" style="color:#e879c1">Sem risco, sem cartão</p>
       <h2>Veja o SEU acervo respondendo antes de pagar qualquer coisa</h2>
-      <p>Preparamos alguns episódios seus gratuitamente e liberamos o acesso por tempo limitado.<br>Você testa com as suas perguntas, no seu ritmo — e só então conversamos sobre planos.</p>
+      <p>Preparamos alguns episódios seus gratuitamente e liberamos o acesso por tempo limitado.<br>Você testa com as suas perguntas, no seu ritmo, e só então conversamos sobre planos.</p>
       <a class="btn btn-cta" href="#" data-zap>Quero a demonstração gratuita</a>
+    </div>
+  </section>
+
+  <!-- PLANO FA: a porta de entrada de quem ouve, nao de quem cria.
+       Antes de 15/08/2026 isto existia so como um link no rodape.
+       Precos e regras: secao 4 do Precos_e_Planos_v4. -->
+  <section id="fa" style="padding-top:0">
+    <div class="fa-faixa reveal">
+      <div>
+        <p class="kicker">Para quem ouve</p>
+        <h2>Não faz podcast, mas ouve muito?</h2>
+        <p>Alguns programas já deixaram o acervo aberto para quem acompanha. Você escolhe o podcast, pergunta o que quiser sobre tudo o que ele já publicou e recebe a resposta com o episódio e o minuto, para conferir ouvindo. As 3 primeiras perguntas não custam nada.</p>
+      </div>
+      <div class="lado">
+        <div class="big">R$ 9,90<small>por 20 perguntas</small></div>
+        <a class="btn btn-cta" href="/fa/">Ver os podcasts</a>
+      </div>
     </div>
   </section>
 
   <!-- EDIÇÃO (discreta, sob encomenda) -->
   <section id="edicao" style="padding-top:0">
     <div class="edicao reveal">
-      <p><b>Também editamos podcast — sob encomenda.</b> Cortes, tratamento de áudio e finalização, avaliados caso a caso e com agenda limitada. Quem edita com a gente já tem o acervo pronto para virar Cortex.</p>
+      <p><b>Também editamos podcast, sob encomenda.</b> Cortes, tratamento de áudio e finalização, avaliados caso a caso e com agenda limitada. Quem edita com a gente já tem o acervo pronto para virar Cortex.</p>
       <a class="btn btn-ghost" href="#" data-zap>Consultar disponibilidade</a>
     </div>
   </section>
@@ -320,12 +348,12 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
     <p class="kicker">Dúvidas frequentes</p>
     <h2 class="titulo">Perguntas que sempre fazem</h2>
     <div style="margin-top:26px">
-      <details class="reveal"><summary>A IA vai inventar coisas sobre mim?</summary><p>Não. O Cortex só responde com o que está no seu acervo, citando episódio e minuto — e você confere na hora, clicando na citação para ouvir o próprio trecho (ou abrir o vídeo no segundo exato). Quando a resposta não existe no seu conteúdo, ele admite que não sabe — essa é a regra de ouro do produto.</p></details>
-      <details class="reveal"><summary>Dá para conferir de onde veio a resposta?</summary><p>Dá — e é uma das melhores partes. Toda citação é clicável: um toque toca o áudio no minuto exato (com play e pause) ou abre o vídeo no YouTube já no segundo certo. Você não precisa acreditar na IA: ouve a prova, na sua própria voz.</p></details>
-      <details class="reveal"><summary>Serve para canal do YouTube ou só podcast?</summary><p>Serve para os dois — e para lives e cursos gravados. Podcast, YouTube e gravações entram no mesmo cérebro, com a origem identificada. No áudio, o trecho toca ali mesmo; no vídeo, abre no YouTube no ponto exato.</p></details>
+      <details class="reveal"><summary>A IA vai inventar coisas sobre mim?</summary><p>Não. O Cortex só responde com o que está no seu acervo, citando episódio e minuto, e você confere na hora clicando na citação para ouvir o próprio trecho ou abrir o vídeo no segundo exato. Quando a resposta não existe no seu conteúdo, ele admite que não sabe. Essa é a regra de ouro do produto.</p></details>
+      <details class="reveal"><summary>Dá para conferir de onde veio a resposta?</summary><p>Dá, e é uma das melhores partes. Toda citação é clicável: um toque toca o áudio no minuto exato, com play e pause, ou abre o vídeo no YouTube já no segundo certo. Você não precisa acreditar na IA, você ouve a prova na sua própria voz.</p></details>
+      <details class="reveal"><summary>Serve para canal do YouTube ou só podcast?</summary><p>Serve para os dois, e também para lives e cursos gravados. Podcast, YouTube e gravações entram no mesmo cérebro, com a origem identificada. No áudio o trecho toca ali mesmo, e no vídeo abre no YouTube no ponto exato.</p></details>
       <details class="reveal"><summary>Meu conteúdo fica seguro?</summary><p>Seu banco é isolado e privado, o acesso é por login, e seus dados não são usados para treinar IA de terceiros. Tratamento conforme a LGPD.</p></details>
-      <details class="reveal"><summary>E os episódios que eu publicar daqui pra frente?</summary><p>Entram no seu Cortex com o mesmo tratamento do acervo — transcrição, identificação de vozes e revisão humana — conforme o seu plano ou sob demanda. Nada entra sem passar pela nossa revisão.</p></details>
-      <details class="reveal"><summary>Quanto custa?</summary><p>Depende do tamanho do seu acervo e do seu ritmo de uso — por isso a proposta é personalizada. O caminho é sempre o mesmo: demonstração gratuita primeiro, números depois. <a href="#" data-zap>Chama no WhatsApp</a> que a gente conversa.</p></details>
+      <details class="reveal"><summary>E os episódios que eu publicar daqui pra frente?</summary><p>Entram no seu Cortex com o mesmo tratamento do acervo, ou seja, transcrição, identificação de vozes e revisão humana, conforme o seu plano ou sob demanda. Nada entra sem passar pela nossa revisão.</p></details>
+      <details class="reveal"><summary>Quanto custa?</summary><p>Depende do tamanho do seu acervo e do seu ritmo de uso, por isso a proposta é personalizada. O caminho é sempre o mesmo: demonstração gratuita primeiro, números depois. <a href="#" data-zap>Chama no WhatsApp</a> que a gente conversa.</p></details>
     </div>
   </section>
 
@@ -335,7 +363,7 @@ footer{background:var(--escuro);padding:34px 0;color:#B9BCC6;font-size:14px;marg
   <div class="wrap foot">
     <span>© <span id="ano"></span> eQualab · Palhoça/SC · <a href="mailto:contato@equalab.com.br">contato@equalab.com.br</a> · <a href="#" data-zap>WhatsApp (48) 99839-5111</a></span>
     <span class="redes">
-      <a href="/ouvir/">Sou ouvinte</a>
+      <a href="/fa/">Sou fã de um podcast</a>
       <a href="/termos/">Termos</a>
       <a href="/privacidade/">Privacidade</a>
       <a href="https://app.equalab.com.br/">Entrar no Cortex</a>
