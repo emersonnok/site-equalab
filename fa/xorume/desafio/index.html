@@ -79,8 +79,13 @@ header{position:sticky;top:0;z-index:50;background:rgba(43,47,56,.94);backdrop-f
 .letra{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);font-size:13px;font-weight:700}
 .res{font-family:Poppins;font-size:20px;margin:18px 0 6px}
 .res.ok{color:#5fd69a}.res.nao{color:#ffb4c4}
-.trecho{margin:12px 0 0;padding:12px 14px;border-left:3px solid var(--violeta);background:rgba(255,255,255,.04);border-radius:0 10px 10px 0;font-size:15px;white-space:pre-line}
+.trecho{margin:12px 0 0;padding:12px 14px;border-left:3px solid var(--violeta);background:rgba(255,255,255,.04);border-radius:0 10px 10px 0;font-size:15px}
 .trecho cite{display:block;margin-top:8px;font-style:normal;color:var(--fraco);font-size:13px}
+.fala{margin:0 0 8px;padding:2px 6px;border-radius:6px}
+.fala b{color:var(--grafite);font-weight:600}
+.fala.resp{background:rgba(63,191,127,.12)}
+.fala .ok{color:#5fd69a;font-weight:600}
+.mais{background:none;border:0;color:var(--azul);cursor:pointer;font-size:13px;padding:0 6px;font-family:inherit}
 audio{width:100%;margin-top:12px}
 .acoes{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:18px}
 .centro{text-align:center}
@@ -183,6 +188,28 @@ const palco = document.getElementById("palco");
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const mmss = s => { s = Math.max(0, Math.floor(+s || 0)); return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0"); };
 
+/* 13/10/2026: o trecho vira conversa (uma fala por linha) e a fala com a
+   resposta fica em destaque, com as palavras da resposta em verde. Mesma
+   regra do app: compara a alternativa certa (peso 3) e a pergunta (peso 1)
+   com cada fala; palavra que também está nas erradas não é pintada. */
+const PARADAS=new Set("a o as os um uma uns umas de do da dos das em no na nos nas por pelo pela para pra pro com sem que e ou se ao aos é era foi ser ter tem tinha mais menos muito muita como qual quais quem onde quando porque ele ela eles elas isso esse essa este esta aquele aquela lá aqui ali já não sim seu sua seus suas meu minha nosso nossa dele dela".split(" "));
+const nrm=w=>String(w||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"");
+const chaves=t=>[...new Set(String(t||"").split(/\s+/).map(nrm).filter(n=>n.length>=3&&!PARADAS.has(n)).map(n=>n.slice(0,Math.max(4,n.length-2))))];
+const bate=(n,ch)=>ch.some(c=>n.startsWith(c)||(n.length>=4&&c.startsWith(n)));
+function trechoHtml(trecho,pergunta,certa,erradas){
+  const kErr=new Set(erradas.flatMap(chaves));let kc=chaves(certa).filter(c=>!kErr.has(c));if(!kc.length)kc=chaves(certa);
+  const kp=chaves(pergunta).filter(c=>!kc.includes(c));
+  const falas=String(trecho||"").split(/\s\|\s/).map(f=>{const m=f.match(/^\s*([^:]{2,40}):\s*([\s\S]*)$/);return m?{nome:m[1].trim(),texto:m[2].trim()}:{nome:"",texto:f.trim()};}).filter(f=>f.texto);
+  let melhor=-1,pts=0;
+  falas.forEach((f,i)=>{const ws=f.texto.split(/\s+/).map(nrm).filter(Boolean);let p=0;
+    for(const c of kc)if(ws.some(n=>bate(n,[c])))p+=3;for(const c of kp)if(ws.some(n=>bate(n,[c])))p+=1;if(p>pts){pts=p;melhor=i;}});
+  if(pts<3)melhor=-1;
+  const linha=(f,i)=>`<p class="fala${i===melhor?" resp":""}">${f.nome?`<b>${esc(f.nome)}:</b> `:""}${f.texto.split(/(\s+)/).map(w=>{const n=nrm(w);return n&&kc.length&&bate(n,kc)?`<span class="ok">${esc(w)}</span>`:esc(w);}).join("")}</p>`;
+  const ini=melhor<0?0:Math.max(0,melhor-1),fim=melhor<0?falas.length:Math.min(falas.length,melhor+2);
+  const curto=falas.slice(ini,fim).map((f,k)=>linha(f,ini+k)).join(""),todo=falas.map(linha).join("");
+  return {curto,todo,cortado:ini>0||fim<falas.length};
+}
+
 function convite(){
   const txt = "Oi! Joguei o desafio do Xorume no site e quero saber do Plano Fã.";
   return `<a class="btn btn-cta" target="_blank" rel="noopener" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(txt)}">Quero jogar valendo ranking</a>`;
@@ -248,9 +275,13 @@ async function responder(escolha){
   const ultimo = idx >= dados.perguntas.length - 1;
   document.getElementById("volta").innerHTML = `
     <p class="res ${r.acertou?"ok":"nao"}">${r.acertou ? "Acertou! +" + r.faria_pontos + " pts" : (escolha === null ? "O tempo acabou" : "Não foi dessa vez")}</p>
-    ${ex.trecho ? `<blockquote class="trecho">${esc(ex.trecho)}<cite>${esc(ex.episodio)}${ex.inicio_seg ? " · " + mmss(ex.inicio_seg) : ""}</cite></blockquote>` : ""}
+    ${ex.trecho ? (()=>{const t=trechoHtml(ex.trecho,p.pergunta,p.alternativas[r.correta],p.alternativas.filter((_,k)=>k!==r.correta));
+      return `<div class="trecho"><div id="tr-falas">${t.curto}</div>${t.cortado?`<button class="mais" id="tr-mais">ver o trecho inteiro</button>`:""}<cite>${esc(ex.episodio)}${ex.inicio_seg ? " · " + mmss(ex.inicio_seg) : ""}</cite></div>`
+        + `<template id="tr-todo">${t.todo}</template>`;})() : ""}
     ${ex.midia_url ? `<audio id="audio" controls preload="none" src="${esc(ex.midia_url)}"></audio>` : ""}
     <div class="acoes"><button class="btn btn-cta" id="seguir">${ultimo ? "Ver meu resultado" : "Próxima"}</button></div>`;
+  const mais = document.getElementById("tr-mais");
+  if(mais) mais.onclick = () => { document.getElementById("tr-falas").innerHTML = document.getElementById("tr-todo").innerHTML; mais.remove(); };
   const au = document.getElementById("audio");
   if(au){ au.addEventListener("loadedmetadata", () => { try{ au.currentTime = Math.max(0, (ex.inicio_seg||0) - 3); }catch(e){} }, {once:true}); }
   document.getElementById("seguir").onclick = () => { if(au) au.pause(); idx++; ultimo ? fim() : mostrar(); };
