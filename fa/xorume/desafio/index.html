@@ -74,6 +74,9 @@ header{position:sticky;top:0;z-index:50;background:rgba(43,47,56,.94);backdrop-f
 .alt{display:flex;gap:12px;align-items:center;text-align:left;background:var(--fundo);color:var(--texto);border:1px solid var(--borda);border-radius:12px;padding:13px 15px;font-size:16px;cursor:pointer;font-family:inherit;line-height:1.4}
 .alt:hover:not([disabled]){border-color:var(--azul)}
 .alt[disabled]{cursor:default}
+.ep{font-size:13px;color:var(--fraco);margin:0 0 6px}
+.alt.escolhida{border-color:var(--azul);background:rgba(41,168,224,.12)}
+.conf{margin-top:10px}
 .alt.certa{border-color:#3fbf7f;background:rgba(63,191,127,.13)}
 .alt.errada{border-color:#ffb4c4;background:rgba(255,180,196,.1)}
 .letra{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);font-size:13px;font-weight:700}
@@ -242,6 +245,7 @@ function mostrar(){
     <div class="cab"><span>Pergunta ${idx+1} de ${dados.perguntas.length}</span>
       <span class="nivel">${NIVEL[p.dificuldade]||""} · ${p.vale} pts</span><span class="tempo" id="tempo">${mmss(dados.limite_seg||120)}</span></div>
     <div class="barra"><div id="barra" style="width:100%"></div></div>
+    ${p.episodio ? `<div class="ep">🎙️ ${esc(p.episodio)}</div>` : ""}
     <h2 class="perg">${esc(p.pergunta)}</h2>
     <div class="alts">${p.alternativas.map((t,i)=>`<button class="alt" data-i="${i}"><span class="letra">${LETRAS[i]}</span>${esc(t)}</button>`).join("")}</div>
     <div id="volta"></div>`;
@@ -258,7 +262,8 @@ function mostrar(){
 async function responder(escolha){
   if(travado) return; travado = true; clearInterval(relogio);
   const p = dados.perguntas[idx];
-  palco.querySelectorAll(".alt").forEach(b => b.disabled = true);
+  palco.querySelectorAll(".alt").forEach(b => { b.disabled = true; if (+b.dataset.i === escolha) b.classList.add("escolhida"); });
+  document.getElementById("volta").innerHTML = `<p class="fraco conf">Conferindo sua resposta...</p>`;
   let r;
   try{
     const resp = await fetch(`${API}/publico/quiz/${SLUG}/conferir`, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({pergunta_id:p.id, escolha})});
@@ -268,6 +273,7 @@ async function responder(escolha){
   if(r.acertou){ pontos += r.faria_pontos; acertos++; }
   palco.querySelectorAll(".alt").forEach(b => {
     const i = +b.dataset.i;
+    b.classList.remove("escolhida");
     if(i === r.correta) b.classList.add("certa");
     else if(i === escolha) b.classList.add("errada");
   });
