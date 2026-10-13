@@ -140,7 +140,7 @@ footer{background:var(--escuro);padding:32px 0;color:#B9BCC6;font-size:14px;marg
   <section class="topo-dz">
     <div class="kicker">Desafio do dia</div>
     <h1>Quem mais conhece o <span class="grad-txt">Xorume</span>?</h1>
-    <p>5 perguntas sobre os episódios, 30 segundos cada. Errou? Você ouve o trecho com a resposta.</p>
+    <p>5 perguntas sobre os episódios, 2 minutos para cada uma. Errou? Você ouve o trecho com a resposta.</p>
   </section>
 
   <div class="jogo">
@@ -209,11 +209,11 @@ function inicio(){
 
 function mostrar(){
   const p = dados.perguntas[idx];
-  const limite = (dados.limite_seg || 30) * 1000, prazo = Date.now() + limite;
+  const limite = (dados.limite_seg || 120) * 1000, prazo = Date.now() + limite;
   travado = false;
   palco.innerHTML = `
     <div class="cab"><span>Pergunta ${idx+1} de ${dados.perguntas.length}</span>
-      <span class="nivel">${NIVEL[p.dificuldade]||""} · ${p.vale} pts</span><span class="tempo" id="tempo">${dados.limite_seg||30}s</span></div>
+      <span class="nivel">${NIVEL[p.dificuldade]||""} · ${p.vale} pts</span><span class="tempo" id="tempo">${mmss(dados.limite_seg||120)}</span></div>
     <div class="barra"><div id="barra" style="width:100%"></div></div>
     <h2 class="perg">${esc(p.pergunta)}</h2>
     <div class="alts">${p.alternativas.map((t,i)=>`<button class="alt" data-i="${i}"><span class="letra">${LETRAS[i]}</span>${esc(t)}</button>`).join("")}</div>
@@ -222,7 +222,7 @@ function mostrar(){
   clearInterval(relogio);
   relogio = setInterval(() => {
     const r = Math.max(0, prazo - Date.now());
-    document.getElementById("tempo").textContent = Math.ceil(r/1000) + "s";
+    document.getElementById("tempo").textContent = mmss(Math.ceil(r/1000));
     document.getElementById("barra").style.width = (r/limite*100) + "%";
     if(r <= 0) responder(null);
   }, 200);
