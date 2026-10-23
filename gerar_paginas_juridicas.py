@@ -31,7 +31,7 @@ PAGINAS = [
     {
         "origem": DOCS / "Termos_de_Uso.md",
         "destino": AQUI / "termos" / "index.html",
-        "titulo": "Termos de Uso — eQualab Cortex",
+        "titulo": "Termos de Uso do Cortex (eQualab)",
         "url": "https://equalab.com.br/termos/",
         "descricao": "Termos de Uso do Cortex: planos, cotas, pagamento, "
                      "cancelamento e responsabilidades.",
@@ -39,7 +39,7 @@ PAGINAS = [
     {
         "origem": DOCS / "Politica_de_Privacidade.md",
         "destino": AQUI / "privacidade" / "index.html",
-        "titulo": "Política de Privacidade — eQualab Cortex",
+        "titulo": "Política de Privacidade do Cortex (eQualab)",
         "url": "https://equalab.com.br/privacidade/",
         "descricao": "Como o Cortex trata dados pessoais: o que é coletado, "
                      "com quem é compartilhado e os seus direitos pela LGPD.",
@@ -219,7 +219,7 @@ border-radius:10px;padding:14px 16px;font-size:14px;color:var(--fraco);margin-bo
 </main>
 <footer>
   <div class="wrap">
-    © <span id="ano"></span> eQualab · Palhoça/SC ·
+    © <span id="ano"></span> eQualab · Curitiba/PR ·
     <a href="/termos/">Termos</a> ·
     <a href="/privacidade/">Privacidade</a> ·
     <a href="/ouvir/">Podcasts</a>
