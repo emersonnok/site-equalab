@@ -67,6 +67,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(43,47,56,.94);backdrop-f
 .cab{display:flex;gap:10px;align-items:center;font-size:13.5px;color:var(--fraco);flex-wrap:wrap}
 .nivel{border:1px solid var(--borda);border-radius:30px;padding:2px 12px}
 .tempo{margin-left:auto;font-weight:700;color:var(--grafite);font-size:17px}
+.bonus{border:1px solid #e0a03b66;background:#e0a03b1f;color:#F5C86B;border-radius:30px;padding:2px 10px;font-weight:600;font-size:12.5px}
 .barra{height:6px;background:rgba(255,255,255,.1);border-radius:99px;margin:12px 0 18px;overflow:hidden}
 .barra div{height:100%;background:var(--grad);transition:width .2s linear}
 .perg{font-size:clamp(19px,2.6vw,23px);margin-bottom:16px}
@@ -185,7 +186,7 @@ const SLUG     = "xorume";
 const WHATSAPP = "5548998395111";
 const LETRAS   = ["A","B","C","D"];
 const NIVEL    = {facil:"Fácil", media:"Média", dificil:"Difícil"};
-let dados = null, idx = 0, pontos = 0, acertos = 0, relogio = null, travado = false;
+let dados = null, idx = 0, pontos = 0, acertos = 0, relogio = null, travado = false, comecou = 0;
 
 const palco = document.getElementById("palco");
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -232,7 +233,7 @@ function podio(){
 function inicio(){
   palco.innerHTML = `<div class="centro">
       <h2>Topa?</h2>
-      <p class="fraco" style="margin:8px 0 18px">${dados.perguntas.length} perguntas. Fácil vale 10, média 20, difícil 30.</p>
+      <p class="fraco" style="margin:8px 0 18px">${dados.perguntas.length} perguntas. Fácil vale 10, média 20, difícil 30, e responder em até 30 segundos dá +5.</p>
       <button class="btn btn-cta" id="comecar">Começar</button></div>`;
   document.getElementById("comecar").onclick = () => mostrar();
 }
@@ -240,10 +241,13 @@ function inicio(){
 function mostrar(){
   const p = dados.perguntas[idx];
   const limite = (dados.limite_seg || 120) * 1000, prazo = Date.now() + limite;
+  const rapido = ((dados.regras && dados.regras.rapido_seg) || 30) * 1000;   /* bônus de rapidez: +5 até 30 s (23/10/2026) */
+  const bonus = (dados.regras && dados.regras.bonus_rapido) || 5;
+  comecou = Date.now();
   travado = false;
   palco.innerHTML = `
     <div class="cab"><span>Pergunta ${idx+1} de ${dados.perguntas.length}</span>
-      <span class="nivel">${NIVEL[p.dificuldade]||""} · ${p.vale} pts</span><span class="tempo" id="tempo">${mmss(dados.limite_seg||120)}</span></div>
+      <span class="nivel">${NIVEL[p.dificuldade]||""} · ${p.vale} pts</span><span class="bonus" id="bonus">⚡ +${bonus} até ${Math.round(rapido/1000)}s</span><span class="tempo" id="tempo">${mmss(dados.limite_seg||120)}</span></div>
     <div class="barra"><div id="barra" style="width:100%"></div></div>
     ${p.episodio ? `<div class="ep">🎙️ ${esc(p.episodio)}</div>` : ""}
     <h2 class="perg">${esc(p.pergunta)}</h2>
@@ -255,6 +259,8 @@ function mostrar(){
     const r = Math.max(0, prazo - Date.now());
     document.getElementById("tempo").textContent = mmss(Math.ceil(r/1000));
     document.getElementById("barra").style.width = (r/limite*100) + "%";
+    const b = document.getElementById("bonus"), passou = Date.now() - comecou;
+    if(b){ if(passou < rapido) b.textContent = `⚡ +${bonus} até ${Math.max(0, Math.ceil((rapido - passou)/1000))}s`; else b.remove(); }
     if(r <= 0) responder(null);
   }, 200);
 }
@@ -270,7 +276,10 @@ async function responder(escolha){
     if(!resp.ok) throw new Error();
     r = await resp.json();
   }catch(e){ document.getElementById("volta").innerHTML = `<p class="res nao">Não consegui conferir. Tenta de novo em instantes.</p>`; travado = false; palco.querySelectorAll(".alt").forEach(b => b.disabled = false); return; }
-  if(r.acertou){ pontos += r.faria_pontos; acertos++; }
+  const rapido = ((dados.regras && dados.regras.rapido_seg) || 30) * 1000, bonus = (dados.regras && dados.regras.bonus_rapido) || 5;
+  const foiRapido = r.acertou && (Date.now() - comecou) < rapido;
+  const ganhou = r.acertou ? r.faria_pontos + (foiRapido ? bonus : 0) : 0;
+  if(r.acertou){ pontos += ganhou; acertos++; }
   palco.querySelectorAll(".alt").forEach(b => {
     const i = +b.dataset.i;
     b.classList.remove("escolhida");
@@ -280,7 +289,7 @@ async function responder(escolha){
   const ex = r.explicacao || {};
   const ultimo = idx >= dados.perguntas.length - 1;
   document.getElementById("volta").innerHTML = `
-    <p class="res ${r.acertou?"ok":"nao"}">${r.acertou ? "Acertou! +" + r.faria_pontos + " pts" : (escolha === null ? "O tempo acabou" : "Não foi dessa vez")}</p>
+    <p class="res ${r.acertou?"ok":"nao"}">${r.acertou ? "Acertou! +" + ganhou + " pts" + (foiRapido ? " (com bônus de rapidez)" : "") : (escolha === null ? "O tempo acabou" : "Não foi dessa vez")}</p>
     ${ex.trecho ? (()=>{const t=trechoHtml(ex.trecho,p.pergunta,p.alternativas[r.correta],p.alternativas.filter((_,k)=>k!==r.correta));
       return `<div class="trecho"><div id="tr-falas">${t.curto}</div>${t.cortado?`<button class="mais" id="tr-mais">ver o trecho inteiro</button>`:""}<cite>${esc(ex.episodio)}${ex.inicio_seg ? " · " + mmss(ex.inicio_seg) : ""}</cite></div>`
         + `<template id="tr-todo">${t.todo}</template>`;})() : ""}

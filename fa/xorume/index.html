@@ -238,12 +238,12 @@ footer{background:var(--escuro);padding:32px 0;color:#B9BCC6;font-size:14px;marg
       <span class="selo-mini">🎙️ Xorume Podcast</span>
       <!-- TROCAR: título e subtítulo -->
       <h1>Quem conhece mais o Xorume <br><span class="grad-txt">é você?</span></h1>
-      <p class="sub">O <b>Quiz do Xorume</b> tem mais de 230 perguntas sobre os episódios, valendo pontos, com ranking do mês e Hall da Fama. E, quando a dúvida bater, um assistente que responde com o <b>episódio e o minuto</b>. Crie a conta e experimente de graça.</p>
+      <p class="sub">O <b>Quiz do Xorume</b> tem mais de <span id="n-quiz-txt">230</span> perguntas sobre os episódios, valendo pontos, com ranking do mês e Hall da Fama. E, quando a dúvida bater, um assistente que responde com o <b>episódio e o minuto</b>. Crie a conta e experimente de graça.</p>
       <div class="numeros">
         <!-- TROCAR: números do acervo (conferidos no banco em 23/10/2026) -->
-        <div><b>230+</b><span>perguntas no quiz</span></div>
-        <div><b>23</b><span>episódios no acervo</span></div>
-        <div><b>54h</b><span>de conversa</span></div>
+        <div><b id="n-quiz">230+</b><span>perguntas no quiz</span></div>
+        <div><b id="n-eps">23</b><span>episódios no acervo</span></div>
+        <div><b id="n-horas">54h</b><span>de conversa</span></div>
       </div>
       <div class="acoes">
         <a href="https://app.equalab.com.br/?fa=xorume" class="btn btn-cta" id="btn-topo">Criar minha conta grátis</a>
@@ -275,7 +275,7 @@ footer{background:var(--escuro);padding:32px 0;color:#B9BCC6;font-size:14px;marg
         </div>
         <div class="quiz-pontos" style="grid-template-columns:1fr 1fr">
           <div><b>+5</b><span>respondeu em até 30&nbsp;s</span></div>
-          <div><b>230+</b><span>perguntas, e crescendo a cada episódio</span></div>
+          <div><b id="n-quiz2">230+</b><span>perguntas, e crescendo a cada episódio</span></div>
         </div>
         <p class="quiz-extra">Cada pergunta vale pontos uma vez. Quer treinar? O modo treino não tem limite.</p>
       </div>
@@ -459,6 +459,7 @@ footer{background:var(--escuro);padding:32px 0;color:#B9BCC6;font-size:14px;marg
    ========================================================= */
 const SLUG = "xorume";
 const APP  = "https://app.equalab.com.br/?fa=" + SLUG;
+const API  = "https://receptor-transcricao.onrender.com";
 /* ========================================================= */
 (function(){
   ["btn-topo", "btn-quiz", "btn-testar", "btn-assinar"].forEach(function(id){
@@ -495,6 +496,17 @@ const APP  = "https://app.equalab.com.br/?fa=" + SLUG;
     });
   });
   document.getElementById("ano").textContent = new Date().getFullYear();
+  /* ---------- numeros do acervo direto do banco (23/10/2026) ----------
+     Se a chamada falhar, ficam os numeros escritos acima. */
+  fetch(API + "/publico/fa/" + SLUG + "/numeros").then(function(r){ return r.ok ? r.json() : null; }).then(function(n){
+    if (!n) return;
+    const q = Number(n.perguntas_quiz || 0), e = Number(n.episodios || 0), h = Number(n.horas || 0);
+    const arred = Math.floor(q / 10) * 10;   /* "230+" e nao "237" */
+    if (q >= 10) { ["n-quiz", "n-quiz2"].forEach(function(id){ const el = document.getElementById(id); if (el) el.textContent = arred + "+"; });
+                   const t = document.getElementById("n-quiz-txt"); if (t) t.textContent = String(arred); }
+    if (e > 0) document.getElementById("n-eps").textContent = String(e);
+    if (h > 0) document.getElementById("n-horas").textContent = h + "h";
+  }).catch(function(){});
 })();
 </script>
 </body>
