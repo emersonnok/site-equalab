@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Desafio do Xorume: quem mais conhece o programa? | Cortex</title>
-<meta name="description" content="5 perguntas sobre os episódios do Xorume. Teste o quanto você conhece o programa e veja o pódio do mês.">
+<title>Quiz do Xorume: quem mais conhece o programa? | Cortex</title>
+<meta name="description" content="5 perguntas de vitrine sobre os episódios do Xorume. Teste o quanto você conhece o programa, veja o pódio do mês e crie a conta grátis para jogar valendo pontos.">
 <!-- 12/10/2026: fica fora do Google ate o jogo abrir (tenants.quiz_ativo). Ao abrir, trocar para "index, follow" e incluir no sitemap.xml -->
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://equalab.com.br/fa/xorume/desafio/">
@@ -146,14 +146,14 @@ footer{background:var(--escuro);padding:32px 0;color:#B9BCC6;font-size:14px;marg
 
 <main class="wrap">
   <section class="topo-dz">
-    <div class="kicker">Desafio do dia</div>
+    <div class="kicker">Quiz do Xorume</div>
     <h1>Quem mais conhece o <span class="grad-txt">Xorume</span>?</h1>
-    <p>5 perguntas sobre os episódios, 2 minutos para cada uma. Errou? Você ouve o trecho com a resposta.</p>
+    <p>5 perguntas de vitrine sobre os episódios, 2 minutos para cada uma. Errou? Você ouve o trecho com a resposta.</p>
   </section>
 
   <div class="jogo">
-    <div class="cartao" id="palco"><p class="fraco centro">Carregando o desafio...</p></div>
-    <p class="regras centro">Como visitante você joga o desafio de ontem e não pontua. Fã com o Plano Fã joga o de hoje e disputa o ranking do mês.</p>
+    <div class="cartao" id="palco"><p class="fraco centro">Carregando o quiz...</p></div>
+    <p class="regras centro">Como visitante você joga uma amostra e não pontua. Com a conta grátis você joga valendo pontos e entra no ranking do mês.</p>
 
     <div class="podio cartao" id="podio" hidden>
       <h2>Pódio do mês <span class="fraco" id="mes"></span></h2>
@@ -214,8 +214,8 @@ function trechoHtml(trecho,pergunta,certa,erradas){
 }
 
 function convite(){
-  const txt = "Oi! Joguei o desafio do Xorume no site e quero saber do Plano Fã.";
-  return `<a class="btn btn-cta" target="_blank" rel="noopener" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(txt)}">Quero jogar valendo ranking</a>`;
+  /* 23/10/2026: o convite leva ao cadastro gratis no app (era WhatsApp) */
+  return `<a class="btn btn-cta" href="https://app.equalab.com.br/?fa=xorume">Criar minha conta grátis e jogar valendo pontos</a>`;
 }
 
 function podio(){
@@ -302,7 +302,7 @@ function fim(){
       <h2>Resultado</h2>
       <p class="placar">${acertos} de ${dados.perguntas.length} · ${pontos} pts</p>
       <p class="fraco">${txtLugar}</p>
-      <p style="margin:16px 0 20px">Com o Plano Fã você joga o desafio novo todo dia, entra no ranking e ainda pergunta o que quiser ao acervo do Xorume.</p>
+      <p style="margin:16px 0 20px">Com a conta grátis você joga valendo pontos, entra no ranking do mês e ainda pergunta ao acervo do Xorume. Teste de 7 dias, sem cartão.</p>
       ${convite()}</div>`;
 }
 
@@ -310,13 +310,13 @@ function fim(){
   document.getElementById("ano") && (document.getElementById("ano").textContent = new Date().getFullYear());
   try{
     const resp = await fetch(`${API}/publico/quiz/${SLUG}`);
-    if(resp.status === 404){ palco.innerHTML = `<div class="centro"><h2>Em breve</h2><p class="fraco" style="margin:10px 0 18px">O desafio do Xorume ainda não abriu. Quer ser avisado?</p>${convite()}</div>`; return; }
+    if(resp.status === 404){ palco.innerHTML = `<div class="centro"><h2>Em breve</h2><p class="fraco" style="margin:10px 0 18px">O quiz do Xorume ainda não abriu. Quer ser avisado?</p>${convite()}</div>`; return; }
     if(!resp.ok) throw new Error();
     dados = await resp.json();
     if(!dados.perguntas || !dados.perguntas.length){ palco.innerHTML = `<p class="fraco centro">Ainda não há perguntas. Volte amanhã!</p>`; return; }
     podio(); inicio();
   }catch(e){
-    palco.innerHTML = `<p class="fraco centro">Não consegui carregar o desafio. O servidor pode estar acordando; recarregue em alguns segundos.</p>`;
+    palco.innerHTML = `<p class="fraco centro">Não consegui carregar o quiz. O servidor pode estar acordando; recarregue em alguns segundos.</p>`;
   }
 })();
 </script>
