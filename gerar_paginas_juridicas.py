@@ -83,6 +83,24 @@ def markdown_para_html(md: str) -> str:
     quando o bloco termina.
     """
     saida, lista, paragrafo, citacao = [], False, [], []
+    tabela = []   # linhas de uma tabela markdown (| a | b |), viram <table>
+
+    def fechar_tabela():
+        if not tabela:
+            return
+        linhas = [l for l in tabela if not re.match(r"^\s*\|?\s*:?-{2,}", l)]
+        cab, corpo = linhas[0], linhas[1:]
+
+        def celulas(l):
+            return [c.strip() for c in l.strip().strip("|").split("|")]
+        html_t = ["<table>", "<thead><tr>"]
+        html_t += [f"<th>{inline(c)}</th>" for c in celulas(cab)]
+        html_t += ["</tr></thead>", "<tbody>"]
+        for l in corpo:
+            html_t.append("<tr>" + "".join(f"<td>{inline(c)}</td>" for c in celulas(l)) + "</tr>")
+        html_t += ["</tbody>", "</table>"]
+        saida.append("\n".join(html_t))
+        tabela.clear()
 
     def fechar_lista():
         nonlocal lista
@@ -104,6 +122,7 @@ def markdown_para_html(md: str) -> str:
         fechar_paragrafo()
         fechar_citacao()
         fechar_lista()
+        fechar_tabela()
 
     for linha in md.split("\n"):
         crua = linha.rstrip()
@@ -116,6 +135,12 @@ def markdown_para_html(md: str) -> str:
             fechar_tudo()
             saida.append("<hr>")
             continue
+
+        if crua.lstrip().startswith("|"):
+            fechar_paragrafo(); fechar_citacao(); fechar_lista()
+            tabela.append(crua)
+            continue
+        fechar_tabela()
 
         cab = re.match(r"^(#{1,4})\s+(.*)$", crua)
         if cab:
@@ -197,10 +222,13 @@ a{{color:var(--azul)}}
 code{{background:var(--escuro);border:1px solid var(--borda);border-radius:5px;padding:1px 6px;font-size:14px}}
 blockquote{{border-left:3px solid var(--violeta);padding:6px 0 6px 16px;margin:0 0 16px;color:var(--fraco);font-size:15px}}
 em{{color:var(--fraco)}}
+table{{width:100%;border-collapse:collapse;margin:0 0 18px;font-size:15px}}
+th,td{{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--borda)}}
+th{{color:var(--grafite);font-weight:600;background:var(--escuro)}}
 footer{{background:var(--escuro);padding:28px 0;color:#B9BCC6;font-size:14px;margin-top:50px}}
 footer a{{color:#8FD4F5}}
 .aviso{{background:var(--branco);border:1px solid var(--borda);border-left:3px solid var(--violeta);
-border-radius:10px;padding:14px 16px;font-size:14px;color:var(--fraco);margin-bottom:26px}}
+border-radius:10px;padding:14px 16px;font-size:14px;color:var(--fraco);margin:30px 0 10px}}
 </style>
 </head>
 <body>
@@ -212,9 +240,9 @@ border-radius:10px;padding:14px 16px;font-size:14px;color:var(--fraco);margin-bo
 </header>
 <main>
   <div class="wrap">
-    <div class="aviso">Página gerada a partir do documento oficial. Em caso de
-    dúvida, escreva para <a href="mailto:contato@equalab.com.br">contato@equalab.com.br</a>.</div>
 {corpo}
+    <div class="aviso">Ficou com alguma dúvida sobre este texto? Escreva para
+    <a href="mailto:contato@equalab.com.br">contato@equalab.com.br</a>.</div>
   </div>
 </main>
 <footer>

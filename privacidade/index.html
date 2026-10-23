@@ -37,10 +37,13 @@ a{color:var(--azul)}
 code{background:var(--escuro);border:1px solid var(--borda);border-radius:5px;padding:1px 6px;font-size:14px}
 blockquote{border-left:3px solid var(--violeta);padding:6px 0 6px 16px;margin:0 0 16px;color:var(--fraco);font-size:15px}
 em{color:var(--fraco)}
+table{width:100%;border-collapse:collapse;margin:0 0 18px;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--borda)}
+th{color:var(--grafite);font-weight:600;background:var(--escuro)}
 footer{background:var(--escuro);padding:28px 0;color:#B9BCC6;font-size:14px;margin-top:50px}
 footer a{color:#8FD4F5}
 .aviso{background:var(--branco);border:1px solid var(--borda);border-left:3px solid var(--violeta);
-border-radius:10px;padding:14px 16px;font-size:14px;color:var(--fraco);margin-bottom:26px}
+border-radius:10px;padding:14px 16px;font-size:14px;color:var(--fraco);margin:30px 0 10px}
 </style>
 </head>
 <body>
@@ -52,12 +55,10 @@ border-radius:10px;padding:14px 16px;font-size:14px;color:var(--fraco);margin-bo
 </header>
 <main>
   <div class="wrap">
-    <div class="aviso">Página gerada a partir do documento oficial. Em caso de
-    dúvida, escreva para <a href="mailto:contato@equalab.com.br">contato@equalab.com.br</a>.</div>
 <h1>POLÍTICA DE PRIVACIDADE DO CORTEX (eQualab)</h1>
 <p><em>Versão de 23/10/2026. Esta Política explica, em linguagem simples, quais dados o Cortex guarda, para quê, com quem compartilha e quais são os seus direitos pela LGPD (Lei 13.709/2018).</em></p>
 <hr>
-<p><strong>1. Controlador.</strong> <strong>EQUALAB TECNOLOGIA LTDA</strong>, CNPJ 68.868.011/0001-21, Curitiba/PR (&quot;eQualab&quot; ou &quot;operador&quot;). Canal para dúvidas e para os pedidos dos titulares de dados (art. 41 da LGPD): <strong>contato@equalab.com.br</strong>. <strong>Encarregado de dados:</strong> Emerson Alves da Silva, pelo mesmo e-mail.</p>
+<p><strong>1. Controlador.</strong> <strong>EQUALAB TECNOLOGIA LTDA</strong>, CNPJ 68.868.011/0001-21, Curitiba/PR (&quot;eQualab&quot; ou &quot;operador&quot;). Canal do encarregado de dados, para dúvidas e para os pedidos dos titulares (art. 41 da LGPD): <strong>contato@equalab.com.br</strong>.</p>
 <hr>
 <h2>2. Dados tratados</h2>
 <p><strong>Cadastro e conta:</strong> e-mail e senha (guardada de forma protegida, nunca em texto aberto), nome ou apelido quando informado, idioma e preferências de interface, e o registro do aceite destes textos (qual versão, data e hora, e o endereço IP de quem aceitou). No cadastro pelo link de um acervo há uma verificação anti-robô feita pela Cloudflare.</p>
@@ -70,14 +71,59 @@ border-radius:10px;padding:14px 16px;font-size:14px;color:var(--fraco);margin-bo
 <p><strong>Acervo do podcast:</strong> áudios, transcrições e derivados (resumos, capítulos, curiosidades, perguntas do quiz, estatísticas) do conteúdo enviado pelo Cliente. Podem conter dados pessoais de participantes dos episódios; o Cliente é quem determina esse conteúdo e responde por ele.</p>
 <hr>
 <h2>3. Finalidades e bases legais</h2>
-<p>| Finalidade | Base legal | |---|---| | Prestar o serviço contratado (responder, exibir episódios, salvar momentos) | execução de contrato | | Jogo e ranking do quiz | execução de contrato (quem aceitou o jogo) | | Exibir o apelido publicamente no ranking | consentimento, retirável a qualquer momento (&quot;jogar sem aparecer&quot;) | | Resumo semanal por e-mail | legítimo interesse, com desligamento a um clique | | Atendimento e resposta a chamados | execução de contrato | | Cobrar, emitir nota fiscal, medir consumo, apurar e pagar repasses | execução de contrato e obrigação legal | | Segurança, prevenção a abuso e melhoria do serviço | legítimo interesse | | Obrigações fiscais e contábeis | cumprimento de obrigação legal |</p>
+<table>
+<thead><tr>
+<th>Finalidade</th>
+<th>Base legal</th>
+</tr></thead>
+<tbody>
+<tr><td>Prestar o serviço contratado (responder, exibir episódios, salvar momentos)</td><td>execução de contrato</td></tr>
+<tr><td>Jogo e ranking do quiz</td><td>execução de contrato (quem aceitou o jogo)</td></tr>
+<tr><td>Exibir o apelido publicamente no ranking</td><td>consentimento, retirável a qualquer momento (&quot;jogar sem aparecer&quot;)</td></tr>
+<tr><td>Resumo semanal por e-mail</td><td>legítimo interesse, com desligamento a um clique</td></tr>
+<tr><td>Atendimento e resposta a chamados</td><td>execução de contrato</td></tr>
+<tr><td>Cobrar, emitir nota fiscal, medir consumo, apurar e pagar repasses</td><td>execução de contrato e obrigação legal</td></tr>
+<tr><td>Segurança, prevenção a abuso e melhoria do serviço</td><td>legítimo interesse</td></tr>
+<tr><td>Obrigações fiscais e contábeis</td><td>cumprimento de obrigação legal</td></tr>
+</tbody>
+</table>
 <hr>
 <h2>4. Compartilhamento: quem processa dados em nosso nome</h2>
-<p>| Provedor | Para quê | Onde | |---|---|---| | <strong>Supabase</strong> | banco de dados e autenticação | São Paulo, Brasil | | <strong>Render</strong> | hospedagem do servidor | exterior | | <strong>Cloudflare</strong> | verificação anti-robô no cadastro | exterior | | <strong>Resend</strong> | envio dos e-mails do serviço (confirmação, cobrança, atendimento, resumo semanal) | exterior | | <strong>Zoho</strong> | caixa de e-mail do atendimento (contato@equalab.com.br) | exterior | | <strong>Google</strong> (Gemini) | geração de embeddings e respostas | exterior | | <strong>Anthropic</strong> (Claude) | geração de respostas, conforme o plano | exterior | | <strong>OpenRouter</strong> | acesso a outros modelos de IA | exterior | | <strong>ElevenLabs</strong> | transcrição de áudio dos episódios | exterior | | <strong>Mercado Pago</strong> | processamento de pagamentos (Pix e cartão) | Brasil |</p>
+<table>
+<thead><tr>
+<th>Provedor</th>
+<th>Para quê</th>
+<th>Onde</th>
+</tr></thead>
+<tbody>
+<tr><td><strong>Supabase</strong></td><td>banco de dados e autenticação</td><td>São Paulo, Brasil</td></tr>
+<tr><td><strong>Render</strong></td><td>hospedagem do servidor</td><td>exterior</td></tr>
+<tr><td><strong>Cloudflare</strong></td><td>verificação anti-robô no cadastro</td><td>exterior</td></tr>
+<tr><td><strong>Resend</strong></td><td>envio dos e-mails do serviço (confirmação, cobrança, atendimento, resumo semanal)</td><td>exterior</td></tr>
+<tr><td><strong>Zoho</strong></td><td>caixa de e-mail do atendimento (contato@equalab.com.br)</td><td>exterior</td></tr>
+<tr><td><strong>Google</strong> (Gemini)</td><td>geração de embeddings e respostas</td><td>exterior</td></tr>
+<tr><td><strong>Anthropic</strong> (Claude)</td><td>geração de respostas, conforme o plano</td><td>exterior</td></tr>
+<tr><td><strong>OpenRouter</strong></td><td>acesso a outros modelos de IA</td><td>exterior</td></tr>
+<tr><td><strong>ElevenLabs</strong></td><td>transcrição de áudio dos episódios</td><td>exterior</td></tr>
+<tr><td><strong>Mercado Pago</strong></td><td>processamento de pagamentos (Pix e cartão)</td><td>Brasil</td></tr>
+</tbody>
+</table>
 <p>Alguns provedores processam dados fora do Brasil, com salvaguardas contratuais adequadas (cláusulas-padrão, conforme a regulamentação da ANPD sobre transferência internacional). <strong>Nos planos utilizados, o conteúdo enviado aos provedores de IA não é usado para treinar os modelos deles.</strong> Não vendemos dados pessoais. O Cliente (criador do podcast) não recebe dados pessoais dos fãs: no painel dele aparecem apenas números agregados e os apelidos do ranking.</p>
 <hr>
 <h2>5. Retenção</h2>
-<p>| Dado | Prazo | |---|---| | Conta, conversas, momentos salvos e dados do quiz | enquanto a conta existir | | Número de WhatsApp informado num chamado | apagado 90 dias depois de o chamado ser fechado | | Registros de governança, cobrança e notas fiscais | até 5 anos (obrigações fiscais) | | Registro do aceite dos Termos e da Política | enquanto a conta existir e pelo prazo de prescrição | | Acervo e transcrições | enquanto durar o contrato com o Cliente, salvo pedido de exclusão |</p>
+<table>
+<thead><tr>
+<th>Dado</th>
+<th>Prazo</th>
+</tr></thead>
+<tbody>
+<tr><td>Conta, conversas, momentos salvos e dados do quiz</td><td>enquanto a conta existir</td></tr>
+<tr><td>Número de WhatsApp informado num chamado</td><td>apagado 90 dias depois de o chamado ser fechado</td></tr>
+<tr><td>Registros de governança, cobrança e notas fiscais</td><td>até 5 anos (obrigações fiscais)</td></tr>
+<tr><td>Registro do aceite dos Termos e da Política</td><td>enquanto a conta existir e pelo prazo de prescrição</td></tr>
+<tr><td>Acervo e transcrições</td><td>enquanto durar o contrato com o Cliente, salvo pedido de exclusão</td></tr>
+</tbody>
+</table>
 <p>Após o encerramento da conta ou a pedido do titular, os dados pessoais são excluídos ou anonimizados em até <strong>30 dias</strong>, ressalvadas as obrigações legais de guarda. O pedido pode ser feito pelo menu &quot;Ajuda e suporte&quot; do app ou pelo e-mail de contato.</p>
 <hr>
 <h2>6. Direitos do titular (LGPD)</h2>
@@ -94,6 +140,8 @@ border-radius:10px;padding:14px 16px;font-size:14px;color:var(--fraco);margin-bo
 <p><strong>Contato:</strong> contato@equalab.com.br</p>
 <p><strong>Última atualização:</strong> 23/10/2026</p>
 <hr>
+    <div class="aviso">Ficou com alguma dúvida sobre este texto? Escreva para
+    <a href="mailto:contato@equalab.com.br">contato@equalab.com.br</a>.</div>
   </div>
 </main>
 <footer>
