@@ -469,8 +469,22 @@ const APP  = "https://app.equalab.com.br/?fa=" + SLUG;
 const API  = "https://receptor-transcricao.onrender.com";
 /* ========================================================= */
 (function(){
+  /* ---------- funil (16/11/2026): conta abertura da pagina e cliques ----------
+     Sem cookie e sem identificar ninguem: so' "abriu" e "clicou em qual botao".
+     ?origem=xxx no endereco marca de onde a pessoa veio (ex.: origem=episodio216)
+     e segue junto para o cadastro. Se a chamada falhar, nada acontece. */
+  const ORIGEM = (function(){ try { return (new URLSearchParams(location.search).get("origem") || "")
+      .toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 40); } catch (e) { return ""; } })();
+  function evento(tipo, botao){
+    try { fetch(API + "/publico/fa/" + SLUG + "/evento", { method: "POST", keepalive: true,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tipo: tipo, botao: botao || "", origem: ORIGEM }) }).catch(function(){}); } catch (e) {}
+  }
+  evento("pagina");
   ["btn-topo", "btn-quiz", "btn-testar", "btn-assinar"].forEach(function(id){
-    const b = document.getElementById(id); if (b) b.href = APP;
+    const b = document.getElementById(id); if (!b) return;
+    b.href = APP + "&origem=" + (ORIGEM || "pagina");
+    b.addEventListener("click", function(){ evento("clique", id.replace("btn-", "")); });
   });
   /* ---------- abre e fecha a resposta de exemplo ---------- */
   document.querySelectorAll(".pergunta").forEach(function(b){
