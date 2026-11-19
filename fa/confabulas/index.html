@@ -185,6 +185,20 @@ footer{background:var(--escuro);padding:32px 0;color:#B9BCC6;font-size:14px;marg
 .nota-mail{color:var(--fraco);font-size:13.4px;margin-top:12px}
 .ok-mail{display:none;margin-top:14px;background:#35c98a1f;border:1px solid #35c98a55;color:#7BE2B0;border-radius:10px;padding:13px 15px;font-size:14.6px}
 @media(max-width:560px){ .form-mail input,.form-mail button{width:100%} }
+
+/* vídeo do fã (19/11/2026): só carrega do YouTube quando a pessoa clica */
+.vfa{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.vfa-txt p{max-width:520px}
+.vfa-player{position:relative;width:290px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;background:#14161c center/cover no-repeat;border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 32px rgba(0,0,0,.28);cursor:pointer}
+.vfa-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vfa-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;background:linear-gradient(90deg,#29A8E0,#5B4FC0,#C81E82);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.vfa-play::after{content:"";border-left:22px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent;margin-left:6px}
+.vfa-player:focus-visible{outline:3px solid #4FC0F0;outline-offset:3px}
+@media (max-width:760px){
+  .vfa{grid-template-columns:1fr;justify-items:center;text-align:center;gap:22px}
+  .vfa-txt p{margin-left:auto;margin-right:auto}
+  .vfa-player{width:min(290px,78vw)}
+}
 </style>
 </head>
 <body>
@@ -254,6 +268,20 @@ footer{background:var(--escuro);padding:32px 0;color:#B9BCC6;font-size:14px;marg
     </div>
   </div>
 </div>
+
+<!-- ===================== VÍDEO (19/11/2026) ===================== -->
+<section id="video" style="padding-top:26px">
+  <div class="wrap">
+    <div class="vfa">
+      <div class="vfa-txt">
+        <div class="kicker">Veja em 45 segundos</div>
+        <h2>O Confabulas respondendo</h2>
+        <p>A pergunta, a resposta com o episódio e o minuto, o Quiz do Confabulas e a busca por palavra, tudo dentro do acervo do programa.</p>
+      </div>
+      <div class="vfa-player" role="button" tabindex="0" aria-label="Assistir ao vídeo" data-yt="Tj-dPSrO_Vg" style="background-image:url('https://i.ytimg.com/vi/Tj-dPSrO_Vg/oar2.jpg')"><span class="vfa-play"></span></div>
+    </div>
+  </div>
+</section>
 
 <!-- ===================== QUIZ (19/11/2026: quiz do Confabulas ligado) ===================== -->
 <section id="quiz" style="padding-top:26px">
@@ -528,6 +556,23 @@ const API  = "https://receptor-transcricao.onrender.com";
       ["n-quiz", "n-quiz2"].forEach(function(id){ const el = document.getElementById(id); if (el) el.textContent = arred + "+"; }); }
   }).catch(function(){});
 })();
+</script>
+
+<script>
+/* vídeo do fã: troca a capa pelo player do YouTube no clique */
+document.querySelectorAll(".vfa-player").forEach(function(b){
+  function tocar(){
+    if(b.dataset.on) return; b.dataset.on = "1";
+    var f = document.createElement("iframe");
+    f.src = "https://www.youtube-nocookie.com/embed/" + b.dataset.yt + "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+    f.title = "Vídeo do Cortex";
+    f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    f.allowFullscreen = true; f.referrerPolicy = "strict-origin-when-cross-origin";
+    b.innerHTML = ""; b.appendChild(f); b.style.cursor = "default"; b.removeAttribute("role"); b.removeAttribute("tabindex");
+  }
+  b.addEventListener("click", tocar);
+  b.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); tocar(); } });
+});
 </script>
 </body>
 </html>
